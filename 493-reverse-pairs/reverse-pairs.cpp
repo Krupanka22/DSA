@@ -6,12 +6,15 @@ public:
         int count=0 ;
         int r = mid+1 ;
 
-        for(int i=left ; i<=mid ; i++){
-            while(r<=right && (long long)a[i]> 2LL*a[r]){
+         for (int i = left; i <= mid; i++) {
+
+            while (r <= right &&
+                   (long long)a[i] > 2LL * a[r]) {
+
+               
                 r++;
             }
-
-            count += r-(mid+1);
+            count += r - (mid + 1);
         }
 
 
