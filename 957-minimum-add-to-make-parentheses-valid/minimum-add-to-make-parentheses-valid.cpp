@@ -1,19 +1,26 @@
 class Solution {
 public:
     int minAddToMakeValid(string s) {
-        int ct = 0 ;
+        int ans = 0;
         int count = 0 ;
 
-        for(int i=0;i<s.size();i++){
-            if(s[i]==')' && count==0){
-                ct++;
-            }
-            if(s[i]=='('){
+        for(int i=0 ; i<s.size() ; i++){
+            char ch = s[i];
+
+            if(ch=='('){
                 count++;
             }
-            else if(count>0) count--;
+
+            if(ch==')'){
+                if(count==0){
+                    ans++;
+                }
+                else{
+                    count--;
+                }
+            }
         }
 
-        return count+ct ;
+        return ans+count ;
     }
 };
