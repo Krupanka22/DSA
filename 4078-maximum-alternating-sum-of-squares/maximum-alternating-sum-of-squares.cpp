@@ -10,18 +10,16 @@ long long ans = 0;
 
     sort(temp.begin(), temp.end());
 
-    int i = 0;
     int j = temp.size() - 1;
+    int i;
 
-    while (i < j) {
+    for (i = 0; i < temp.size() / 2; i++) {
         ans += temp[j];
         ans -= temp[i];
-
-        i++;
         j--;
     }
 
-    if (i == j) {
+    if (temp.size() % 2 != 0) {
         ans += temp[i];
     }
 
