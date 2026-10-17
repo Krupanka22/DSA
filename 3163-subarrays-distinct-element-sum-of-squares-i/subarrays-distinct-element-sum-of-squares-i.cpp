@@ -1,7 +1,6 @@
 class Solution {
 public:
     int sumCounts(vector<int>& nums) {
-          vector<vector<int>> ans ;
           int n = nums.size();
           int final = 0 ;
 
