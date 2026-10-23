@@ -11,23 +11,14 @@
  */
 class Solution {
 public:
-    void calculate(TreeNode* root , int from , int&ans){
-        if(root==NULL){
-            return ;
-        }
-
-        if(root->left==NULL && root->right==NULL && from==0){
-            ans+=root->val;
-        }
-
-        calculate(root->left , 0 , ans);
-        calculate(root->right , 1 , ans);
-    }
     int sumOfLeftLeaves(TreeNode* root) {
+        if(root==NULL) return 0;
+
         int ans = 0 ;
+        if(root->left!=NULL && root->left->left==NULL && root->left->right==NULL){
+                ans = root->left->val ;
+        }
 
-        calculate(root , 2 , ans);
-
-        return ans ;
+        return ans+sumOfLeftLeaves(root->left)+sumOfLeftLeaves(root->right);
     }
 };
