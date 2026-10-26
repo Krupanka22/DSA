@@ -1,41 +1,42 @@
 class Solution {
 public:
-long long dfs(vector<vector<int>>& grid, int i, int j) {
-int m = grid.size();
-int n = grid[0].size();
 
-    if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0)
-        return 0;
 
-    long long sum = grid[i][j];
-    grid[i][j] = 0;  // Mark as visited
 
-    sum += dfs(grid, i - 1, j);
-    sum += dfs(grid, i + 1, j);
-    sum += dfs(grid, i, j - 1);
-    sum += dfs(grid, i, j + 1);
+    long long traverse ( vector<vector<int>>& grid , int i , int j){
+        long long sum = 0;
+        if(i<0 || i>=grid.size() || j<0 || j>=grid[i].size()) return 0;
 
-    return sum;
-}
+        if(grid[i][j]==0) return 0;
 
-int countIslands(vector<vector<int>>& grid, int k) {
-    int m = grid.size();
-    int n = grid[0].size();
-    int count = 0;
+        
+        sum = grid[i][j] ;
+        grid[i][j]=0;
 
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            if (grid[i][j] != 0) {
-                long long sum = dfs(grid, i, j);
+        sum += traverse(grid ,  i-1 , j );
+        sum += traverse(grid  , i+1 , j );
+        sum += traverse(grid  , i , j+1 );
+        sum += traverse(grid ,  i , j-1 );
 
-                if (sum % k == 0)
-                    count++;
-            }
-        }
+        return sum;
     }
 
-    return count;
-}
 
+    int countIslands(vector<vector<int>>& grid, int k) {
+        int count = 0 ;
+       
+        for(int i=0 ; i<grid.size() ; i++){
+            for(int j=0 ; j<grid[i].size() ; j++){
+                if(grid[i][j] != 0){
+                    long long sum = traverse(grid , i , j);
+                     
+                     if (sum % k == 0) { 
+                        count++;
+                         }
+                }
+            }
+        }
 
+        return count ;
+    }
 };
