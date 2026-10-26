@@ -21,7 +21,6 @@ public:
 
     int countIslands(vector<vector<int>>& grid, int k) {
         int count = 0 ;
-        vector<vector<int>> temp ;
         vector<int> island ;
         for(int i=0 ; i<grid.size() ; i++){
             for(int j=0 ; j<grid[i].size() ; j++){
