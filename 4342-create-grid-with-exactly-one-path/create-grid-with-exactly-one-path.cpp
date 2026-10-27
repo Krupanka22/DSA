@@ -1,26 +1,16 @@
 class Solution {
 public:
-    void create(int m, int n, vector<string>& str, int i, int j) {
-        if (i < 0 || i >= m || j < 0 || j >= n)
-            return;
-
-        str[i][j] = '.';
-
-        if(i==0 && j<n-1){
-            create(m, n, str, i, j + 1);
-}
-        
-        else if(j==n-1 && i<m-1){
-            create(m, n, str, i+1, j);
-
-        
-    }}
-
     vector<string> createGrid(int m, int n) {
-        vector<string> str(m, string(n, '#'));
+        vector<string> str(m,string(n,'#'));
 
-        create(m, n, str, 0, 0);
+        for(int i=0 ; i<n ; i++){
+            str[0][i] = '.';
+        }
 
-        return str;
+        for(int i=1 ; i<m ; i++){
+            str[i][n-1] = '.';
+        }
+
+        return str ;
     }
 };
