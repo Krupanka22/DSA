@@ -6,8 +6,16 @@ public:
         if(n==2) return 2;
 
         if(dp[n] != -1) return dp[n];
+        int left,right;
+        if(dp[n-2]!=-1){
+            left=dp[n-2];
+        }
+        else left=find(n-2 , dp);
+        if(dp[n-1]!=-1){
+            right=dp[n-1];
+        } else right=find(n-1 , dp);
 
-        return dp[n]= find(n-2 , dp)+find(n-1 , dp);
+        return dp[n]= left+right;
 
     }
     int climbStairs(int n) {
