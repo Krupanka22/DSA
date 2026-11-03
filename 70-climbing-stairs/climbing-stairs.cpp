@@ -6,6 +6,7 @@ public:
         if(n==2) return 2;
 
         if(dp[n] != -1) return dp[n];
+        
         int left,right;
         if(dp[n-2]!=-1){
             left=dp[n-2];
