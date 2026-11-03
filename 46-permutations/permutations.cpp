@@ -1,40 +1,33 @@
 class Solution {
 public:
 
-    void Com(vector<int>& nums ,vector<vector<int>>&ans , vector<int>temp , unordered_map<int,int>&mp){
+    void generate(vector<int>& nums , int n ,vector<int>&temp , vector<vector<int>>&ans , unordered_map<int,int>&mpp){
+        if(n==temp.size()) {
+            ans.push_back(temp);
+            return ;
+        }
 
-            int n = nums.size();
-            int m = temp.size() ;
-
-            if(m==n) {
-                ans.push_back(temp);
-                return;
+        for(int i=0 ; i<n ; i++){
+            if(mpp[nums[i]]==1){
+                continue;
             }
-
-           for(int i=0 ; i<n ; i++){
-            if(mp[nums[i]]==1) continue ;
-
+            mpp[nums[i]]=1 ;
             temp.push_back(nums[i]);
-            mp[nums[i]]=1;
 
-             Com( nums , ans , temp , mp);
-
-             temp.pop_back();
-             mp[nums[i]]=0;
-           }
-
+            generate(nums , n , temp , ans , mpp);
             
+            mpp[nums[i]]=0;
+            temp.pop_back();
+        }
     }
-
-
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> ans ;
-        vector<int> temp;
-        unordered_map<int, int> mp ;
+        int n = nums.size() ;
+         vector<vector<int>> ans;
+         vector<int> temp ;
+        unordered_map<int, int> mpp ;
 
-        Com(nums , ans , temp , mp);
+          generate(nums , n , temp , ans , mpp);
 
-        return ans ;
-
+          return ans ;
     }
 };
